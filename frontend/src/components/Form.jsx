@@ -52,7 +52,7 @@ function Form({route, method}){
         <button className="form-button" type="submit">
             {name}
         </button>
-        <p>*Don't use a password you use on other websites</p>
+        <p>*Use a unique username and password</p>
     </form>
     
 }

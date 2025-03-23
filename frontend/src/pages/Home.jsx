@@ -44,8 +44,11 @@ function Home(){
     return <div>
         <Header />
         <div>
+            
             <h2>Notes</h2>
-            {notes.map((note) => (
+            {(notes.length == 0) 
+            ? <p>No notes yet. Create one below!</p>
+            : notes.map((note) => (
                 <Note note={note} onDelete={deleteNote} key={note.id} />
             ))}
         </div>

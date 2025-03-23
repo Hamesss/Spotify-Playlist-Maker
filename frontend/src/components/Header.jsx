@@ -6,6 +6,7 @@ function Header() {
             <div className = "logo-and-name">
                 <img src={logo} alt="Company Logo" className="logo" />
                 <h1 className="website-name">Spotify Playlist Maker</h1>
+                <h5>(*Unofficial)</h5>
             </div>
             <nav>
                 <div className="links">
