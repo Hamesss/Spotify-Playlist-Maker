@@ -1,0 +1,50 @@
+/*Old css
+.song-container{
+    border: "1px solid #ccc";
+    padding: 10px;
+    margin: 10px;
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 15px;
+    min-width: 300px;
+    width: auto;
+    max-width: 1500px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+*/
+.song-container {
+    border: 3px solid black;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+
+    /* ✅ Make width fit content */
+    display: inline-flex; /* ✅ Adjust width based on content */
+    align-items: center;
+    gap: 15px;
+    
+    max-width: 100%; /* Prevent overflow */
+    white-space: nowrap; /* Ensure text stays in a row */
+}
+
+.album-cover{
+    width: 75px;
+    border-radius: 10px;
+    
+}
+
+.song-info {
+    margin-left: 20px;
+    display: flex; /* ✅ Keep text in a row */
+    flex-wrap: wrap; /* ✅ Allow text to wrap if needed */
+    align-items: center;
+    gap: 30px; /* ✅ Spacing between items */
+    flex-grow: 1; /* ✅ Allow text to take up space */
+}
+
+.song-name{
+    color: #444444;
+}

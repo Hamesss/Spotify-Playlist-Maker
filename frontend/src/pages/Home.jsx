@@ -3,11 +3,16 @@ import api from "../api"
 import Note from "../components/Note.jsx"
 import Header from "../components/Header.jsx"
 import "../styles/Home.css"
+import Song from "../components/Song.jsx"
+import ErrorBoundary from "../components/ErrorBoundary";
+
 function Home(){
+    
     const [notes, setNotes] = useState([]);
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
 
+    
     useEffect(() => {
         getNotes();
     }, [])
@@ -43,8 +48,11 @@ function Home(){
 
     return <div>
         <Header />
+        <ErrorBoundary>
+            <Song />
+        </ErrorBoundary>
+        
         <div>
-            
             <h2>Notes</h2>
             {(notes.length == 0) 
             ? <p>No notes yet. Create one below!</p>
