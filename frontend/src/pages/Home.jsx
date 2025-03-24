@@ -9,7 +9,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 
 function Home() {
     const [notes, setNotes] = useState([]);
-    const [selectedSong, setSelectedSong] = useState(null);  // ✅ Added state for selected song
+    const [selectedSong, setSelectedSong] = useState(null);
 
     useEffect(() => {
         getNotes();
@@ -19,10 +19,7 @@ function Home() {
         api
             .get("/api/notes/")
             .then((res) => res.data)
-            .then((data) => {
-                setNotes(data);
-                console.log("Notes:", data);
-            })
+            .then((data) => setNotes(data))
             .catch((err) => alert(err));
     };
 
@@ -37,8 +34,8 @@ function Home() {
             .catch((error) => alert(error));
     };
 
-    const createNote = (e) => {
-        e.preventDefault();
+    // ✅ Pass createNote function to SongSearcher
+    const createNote = () => {
         if (!selectedSong) {
             alert("Please select a song first!");
             return;
@@ -56,29 +53,20 @@ function Home() {
     return (
         <div>
             <Header />
-
             <ErrorBoundary>
-                <SongSearcher onSongSelect={setSelectedSong}/>
+                <SongSearcher onSongSelect={setSelectedSong} onSubmit={createNote} />
             </ErrorBoundary>
 
-            <h2>Add a song</h2>
-            <form onSubmit={createNote}>
-                <p><strong>Selected Song:</strong> {selectedSong ? selectedSong.song_name : "None"}</p>
-                <button type="submit">Submit</button>
-            </form>
-
             <div>
-                <h2>My Songs</h2>
+                <h2>Songs</h2>
                 {notes.length === 0 ? (
-                    <p>No songs yet. Choose one above!</p>
+                    <p>No songs yet. Add one above!</p>
                 ) : (
                     notes.map((note) => (
                         <Note note={note} onDelete={deleteNote} key={note.id} />
                     ))
                 )}
             </div>
-
-            
 
             
             

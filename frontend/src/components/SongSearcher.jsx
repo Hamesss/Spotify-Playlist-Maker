@@ -2,28 +2,24 @@ import { useState } from "react";
 import { searchTrack, getTrackInfo } from "../spotifyAuth.js";
 import "../styles/Song.css";
 
-export default function SongSearcher({ onSongSelect }) {  // Accept function prop
+export default function SongSearcher({ onSongSelect, onSubmit }) {  // ✅ Accept onSubmit as a prop
     const [query, setQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [song, setSong] = useState(null);
 
     async function handleSearch() {
-        if (!query.trim()) return; // Prevent empty searches
+        if (!query.trim()) return;
         const results = await searchTrack(query);
         setSearchResults(results);
-        console.log("Search Results:", results);  // Debugging
+        console.log("Search Results:", results);
     }
 
     async function selectSong(trackId) {
-        console.log("onSongSelect function:", onSongSelect); // Debugging
-        if (!onSongSelect || typeof onSongSelect !== "function") {
-            console.error("onSongSelect is not a function!");
-            return;
-        }
-    
         const songData = await getTrackInfo(trackId);
         if (songData) {
             setSong(songData);
+            console.log("Selected Song:", songData);
+
             onSongSelect({
                 song_name: songData.name,
                 artist: songData.artists.map(artist => artist.name).join(", "),
@@ -33,7 +29,6 @@ export default function SongSearcher({ onSongSelect }) {  // Accept function pro
                 }`,
                 album_image: songData.album?.images?.[0]?.url || ""
             });
-            
         }
     }
 
@@ -70,6 +65,10 @@ export default function SongSearcher({ onSongSelect }) {  // Accept function pro
                     <p><strong>Duration:</strong> {Math.floor(song.duration_ms / 60000)}:
                         {((song.duration_ms % 60000) / 1000).toFixed(0).padStart(2, "0")}
                     </p>
+                    {/* ✅ Submit Button - Only enabled when a song is selected */}
+                    <button onClick={onSubmit} disabled={!song} className="submit-button">
+                        Submit Note
+                    </button>
                 </div>
             )}
         </div>
