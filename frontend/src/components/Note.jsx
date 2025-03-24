@@ -1,14 +1,18 @@
 import React from "react"
 import "../styles/Note.css"
-import Song from "./Song"
+
 
 
 function Note({note, onDelete}){
-    const formattedDate = new Date(note.created_at).toLocaleDateString("en-US")
+    
     return <div className="note-container">
-        <p className="note-title">{note.title}</p>
-        <p className="note-content">{note.content}</p>
-        <p className="note-date">{formattedDate}</p>
+        {note.album_image && (
+                <img src={note.album_image} alt={note.album} className="album-cover" />
+            )}
+        <p className="Song name">{note.song_name}</p>
+        <p className="Artist">{note.artist}</p>
+        <p className="Album">{note.album}</p>
+        <p className="Length">{note.length}</p>
         <button className="delete-button" onClick={() => onDelete(note.id)}>
             Delete
         </button>
