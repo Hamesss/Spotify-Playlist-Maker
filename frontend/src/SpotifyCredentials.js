@@ -1,2 +1,0 @@
-export const CLIENT_ID="197e1086248d41d991be176a86d87dea"
-export const CLIENT_SECRET="c4503f766d81446ba7da332c753d8530"
