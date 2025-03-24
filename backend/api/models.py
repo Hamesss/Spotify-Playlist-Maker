@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Note(models.Model):
-    song_name = models.CharField(max_length=100)
+    song_name = models.CharField(max_length=300)
     artist = models.TextField()
     album = models.TextField()
     length = models.TextField()

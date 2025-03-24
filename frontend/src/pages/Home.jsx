@@ -3,7 +3,6 @@ import api from "../api";
 import Note from "../components/Note.jsx";
 import Header from "../components/Header.jsx";
 import "../styles/Home.css";
-import Song from "../components/Song.jsx";
 import SongSearcher from "../components/SongSearcher.jsx";
 import ErrorBoundary from "../components/ErrorBoundary";
 
@@ -27,8 +26,8 @@ function Home() {
         api
             .delete(`/api/notes/delete/${id}/`)
             .then((res) => {
-                if (res.status === 204) alert("Note deleted!");
-                else alert("Failed to delete note");
+                if (res.status === 204) alert("Song deleted!");
+                else alert("Failed to delete song");
                 getNotes();
             })
             .catch((error) => alert(error));
@@ -43,8 +42,8 @@ function Home() {
 
         api.post("/api/notes/", selectedSong)
             .then((res) => {
-                if (res.status === 201) alert("Note created");
-                else alert("Failed to make note");
+                if (res.status === 201) alert("Song added");
+                else alert("Failed to add song");
                 getNotes();
             })
             .catch((err) => alert(err));
