@@ -2,7 +2,7 @@ import { useState } from "react";
 import { searchTrack, getTrackInfo } from "../spotifyAuth.js";
 import "../styles/Song.css";
 
-export default function SongSearcher({ onSongSelect, onSubmit }) {  // ✅ Accept onSubmit as a prop
+export default function SongSearcher({ onSongSelect, onSubmit }) {
     const [query, setQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [song, setSong] = useState(null);
@@ -65,7 +65,6 @@ export default function SongSearcher({ onSongSelect, onSubmit }) {  // ✅ Accep
                     <p><strong>Duration:</strong> {Math.floor(song.duration_ms / 60000)}:
                         {((song.duration_ms % 60000) / 1000).toFixed(0).padStart(2, "0")}
                     </p>
-                    {/* ✅ Submit Button - Only enabled when a song is selected */}
                     <button onClick={onSubmit} disabled={!song} className="submit-button">
                         Submit Note
                     </button>
