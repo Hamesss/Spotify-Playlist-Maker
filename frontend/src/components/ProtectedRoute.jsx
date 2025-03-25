@@ -15,9 +15,10 @@ function ProtectedRoute({children}){
         try{
             const res = await api.post("/api/token/refresh/", {
                 refresh: refreshToken
-            });  
+            });
             if (res.status === 200){
                 localStorage.setItem(ACCESS_TOKEN, res.data.access)
+                console.log(res.data.access);
                 setIsAuthorized(true)
             }
             else{
@@ -53,4 +54,4 @@ function ProtectedRoute({children}){
     return isAuthorized ? children : <Navigate to="login" />
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;

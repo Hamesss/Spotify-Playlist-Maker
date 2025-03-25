@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import api from "../api";
 import Note from "../components/Note.jsx";
 import Header from "../components/Header.jsx";
@@ -9,6 +10,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 function Home() {
     const [notes, setNotes] = useState([]);
     const [selectedSong, setSelectedSong] = useState(null);
+    
 
     useEffect(() => {
         getNotes();
